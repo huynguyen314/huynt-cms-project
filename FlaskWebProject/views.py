@@ -87,11 +87,7 @@ def authorized():
         return render_template("auth_error.html", result=request.args)
     if request.args.get('code'):
         cache = _load_cache()
-<<<<<<< HEAD
         # Acquire a token from a built msal app, along with the appropriate redirect URI
-=======
-        # TODO: Acquire a token from a built msal app, along with the appropriate redirect URI
->>>>>>> 906628e11459359bb87ac9196ff2b8ac1bddee75
         result = _build_msal_app(cache=cache).acquire_token_by_authorization_code(
             request.args['code'],
             scopes=Config.SCOPE,
@@ -132,21 +128,13 @@ def _save_cache(cache):
 
 
 def _build_msal_app(cache=None, authority=None):
-<<<<<<< HEAD
     # Create and return a Confidential Client Application from msal
-=======
-    # TODO: Create and return a Confidential Client Application from msal
->>>>>>> 906628e11459359bb87ac9196ff2b8ac1bddee75
     return msal.ConfidentialClientApplication(
      Config.CLIENT_ID, authority=authority or Config.AUTHORITY,
      client_credential=Config.CLIENT_SECRET, token_cache=cache)
 
 def _build_auth_url(authority=None, scopes=None, state=None):
-<<<<<<< HEAD
     # Get the authorization request URL from a built msal app, and return it
-=======
-    # TODO: Get the authorization request URL from a built msal app, and return it
->>>>>>> 906628e11459359bb87ac9196ff2b8ac1bddee75
     return _build_msal_app(authority=authority).get_authorization_request_url(
     scopes or [],
     state=state or str(uuid.uuid4()),
