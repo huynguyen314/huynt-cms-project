@@ -7,6 +7,15 @@
 - *Choose the appropriate solution (VM or App Service) for deploying the app*
 - *Justify your choice*
 
-### Assess app changes that would change your decision.
+*Cost*
+- VM: Since you have total control over the underlying operating system, custom configurations, and custom software, you need infrastructure engineers to concentrate on maintaining
+- App Service: Cost efficiency - A single App Service plan can contain multiple applications as long as the plan has enough resources to handle the increasing load. The disadvantage: If you need to upgrade a portion of your App tier, you much upgrade to the next plan tier => higher cost
 
-*Detail how the app and any other needs would have to change for you to change your decision in the last section.* 
+*Scalability*
+- In VMs, horizontal scaling is achieved via Scale Sets
+    - require separate load balancer
+    - if existing VM does not belong to Scale Set, it might need a bit of configuration work to enable
+- App Service provides an Integrated load balancer and can easily increase instances
+
+In conclusion, we would like to use App Service for deploying this web app.
+
