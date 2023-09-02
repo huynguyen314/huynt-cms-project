@@ -61,7 +61,7 @@ def post(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        app.logger.debug('Logged in successfully')
+        # app.logger.debug('Logged in successfully')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -100,6 +100,7 @@ def authorized():
         user = User.query.filter_by(username="admin").first()
         login_user(user)
         _save_cache(cache)
+    app.logger.info('Logged in successfully')
     return redirect(url_for('home'))
 
 @app.route('/logout')
@@ -135,6 +136,7 @@ def _build_msal_app(cache=None, authority=None):
 
 def _build_auth_url(authority=None, scopes=None, state=None):
     # Get the authorization request URL from a built msal app, and return it
+    # app.logger.info('Logged in successfully')
     return _build_msal_app(authority=authority).get_authorization_request_url(
     scopes or [],
     state=state or str(uuid.uuid4()),
